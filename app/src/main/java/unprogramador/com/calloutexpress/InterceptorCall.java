@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.lang.reflect.Method;
 
@@ -23,9 +24,14 @@ public class InterceptorCall extends BroadcastReceiver {
             if ( extras.getString("state").equals(TelephonyManager.EXTRA_STATE_RINGING)) {
                 String phoneNumber = extras.getString("incoming_number");
                 if(phoneNumber.equals("9612238049")){
+                    killCall callout = new killCall();
+                    boolean co = callout.callOut(context);
+                    if(co){
+                        Toast.makeText(context, "Llamada colgada numero: "+ phoneNumber, Toast.LENGTH_SHORT).show();
+                    }
 
                 }
-                String incomingNumber =
+                /*String incomingNumber =
                         intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
                 Log.d(TAG,"PhoneStateReceiver**Incoming call " + incomingNumber);
                 Handler h = new Handler();
@@ -34,7 +40,7 @@ public class InterceptorCall extends BroadcastReceiver {
                     public void run() {
                         killCall(context);
                     }
-                },10);
+                },10);*/
 
             }
 

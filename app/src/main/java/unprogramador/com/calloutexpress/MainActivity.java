@@ -34,16 +34,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
         int permissionCheckCall = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE);
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED)
+        /*if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED)
         {
 
-        }
+        }*/
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.READ_PHONE_STATE)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE,Manifest.permission.READ_PHONE_STATE,Manifest.permission.READ_CONTACTS}, PERMISSION_ACCESS_CALL_PHONE);
 
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+            /*if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.READ_PHONE_STATE)) {
 
             } else {
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                         new String[]{Manifest.permission.READ_PHONE_STATE},
                         MY_PERMISSIONS_REQUEST_READ_PHONE_STATE);
 
-            }
+            }*/
         }
 
 
