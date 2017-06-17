@@ -9,12 +9,13 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public class SqliteHelper extends SQLiteOpenHelper {
+    public static final String COLUMN_ID = "_id";
     public static final String COLUMN_NUMBER = "phone";
-    public static final String COLUMN_NAME = "Name";
+    public static final String COLUMN_NAME = "name";
     public static final String DATABASE_NAME = "blocks.db";
     private static final int DATABASE_VERSION = 1;
     public static final String TABLE_PROFILES = "profiles";
-    private static final String DATABASE_CREATE = "create table"+TABLE_PROFILES+"( _id integer primary key autoincrement, "+ COLUMN_NAME +" text, " + COLUMN_NUMBER +" text not null);";
+    private static final String DATABASE_CREATE = "create table "+TABLE_PROFILES+"( _id integer primary key autoincrement, "+ COLUMN_NAME +" text, " + COLUMN_NUMBER +" text not null);";
 
 
     public SqliteHelper(Context context) {

@@ -16,5 +16,26 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="SelectOption">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:height">40dp</item>
+    </style>
+    <style name="cancel">
+        <item name="android:textColor">@color/Cancel</item>
+        <item name="android:background">@color/white</item>
+
+    </style>
+    <style name="delete">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@color/Cancel</item>
+
+    </style>
+    <style name="save">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:background">@color/white</item>
+
+    </style>
+
 
 </resources>
