@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.CallLog;
 import android.provider.ContactsContract;
+import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -88,35 +89,45 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final AlertDialog.Builder option = new AlertDialog.Builder(MainActivity.this);
-                View viewf = getLayoutInflater().inflate(R.layout.option, null);
-                Button contact = (Button) viewf.findViewById(R.id.contact);
-                Button calllog = (Button) viewf.findViewById(R.id.log);
-                Button insertphone = (Button) viewf.findViewById(R.id.insert);
-                option.setView(viewf);
-                option.create().show();
-                contact.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        contact();
-                    }
-                });
-                calllog.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        calllogselect();
+                if(ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) < 0 || ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) < 0 ){
+                    Toast.makeText(getApplicationContext(),R.string.notaccess,Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent();
+                    intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                    Uri uri = Uri.fromParts("package", getPackageName(), null);
+                    intent.setData(uri);
+                    startActivity(intent);
 
-                    }
-                });
-                insertphone.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent callwrite = new Intent(getApplicationContext(), AddCallLog.class);
-                        startActivity(callwrite);
-                        finish();
-                    }
-                });
+                }else{
+                    final AlertDialog.Builder option = new AlertDialog.Builder(MainActivity.this);
+                    View viewf = getLayoutInflater().inflate(R.layout.option, null);
+                    Button contact = (Button) viewf.findViewById(R.id.contact);
+                    Button calllog = (Button) viewf.findViewById(R.id.log);
+                    Button insertphone = (Button) viewf.findViewById(R.id.insert);
+                    option.setView(viewf);
+                    option.create().show();
+                    contact.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            contact();
+                        }
+                    });
+                    calllog.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            calllogselect();
 
+                        }
+                    });
+                    insertphone.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent callwrite = new Intent(getApplicationContext(), AddCallLog.class);
+                            startActivity(callwrite);
+                            finish();
+                        }
+                    });
+
+                }
 
             }
         });

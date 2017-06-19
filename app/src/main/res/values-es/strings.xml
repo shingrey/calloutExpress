@@ -16,4 +16,5 @@
     <string name="save">Guardar</string>
     <string name="about">Bloqueo de llamadas express  fue realizada al tener la necesidad de bloquear de forma rápida y fácil numeros de seguros de bancos que querian vender algo en mi blog explico como fue desarrollado y encontraran otros temas sobre programación  😉</string>
     <string name="action_settings">Acerca de</string>
+    <string name="notaccess">Agregar permisos a la app</string>
 </resources>
