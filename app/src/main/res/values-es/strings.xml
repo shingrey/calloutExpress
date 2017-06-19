@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bloqueo de llamadas Express</string>
+    <string name="block_number_title">Lista de numeros bloqueados</string>
+    <string name="cancel">Cancelar</string>
+    <string name="delete">Borrar</string>
+    <string name="error_insert">Error al insertar</string>
+    <string name="insert_name">Ingrese nombre</string>
+    <string name="insert_phone">Ingrese numero</string>
+    <string name="mns_init">Contactos bloqueados</string>
+    <string name="number_null">Número no puede estar vacío</string>
+    <string name="op1">Contactos</string>
+    <string name="op2">Registro de llamadas</string>
+    <string name="op3">Insertar número</string>
+    <string name="recent_call">Seleccion de llamadas recientes</string>
+    <string name="save">Guardar</string>
+    <string name="about">Bloqueo de llamadas express  fue realizada al tener la necesidad de bloquear de forma rápida y fácil numeros de seguros de bancos que querian vender algo en mi blog explico como fue desarrollado y encontraran otros temas sobre programación  😉</string>
+    <string name="action_settings">Acerca de</string>
+</resources>

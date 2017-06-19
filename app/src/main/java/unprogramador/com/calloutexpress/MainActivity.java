@@ -233,6 +233,8 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent About = new Intent(getApplicationContext(), unprogramador.com.calloutexpress.About.class);
+            startActivity(About);
             return true;
         }
 

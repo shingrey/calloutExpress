@@ -71,11 +71,11 @@ public class AddCallLog extends AppCompatActivity {
                 String p = phoneET.getText().toString().trim();
                 sqlh = new SqliteHelper(getApplicationContext());
                 q = new Querys();
-                if(p.trim() != "" || p != null){
-                    p = p.replace("(", "");
-                    p = p.replace(")", "");
-                    p = p.replace("-", "");
-                    p = p.replace(" ", "");
+                p = p.replace("(", "");
+                p = p.replace(")", "");
+                p = p.replace("-", "");
+                p = p.replace(" ", "");
+                if(!p.equals("")){
                     boolean qq = q.insert(sqlh,n,p);
                     if (qq){
                         Intent home = new Intent(getApplicationContext(),MainActivity.class);
@@ -86,7 +86,7 @@ public class AddCallLog extends AppCompatActivity {
                     }
 
                 }else{
-                    Toast.makeText(getApplicationContext(),R.string.number_null,Toast.LENGTH_SHORT);
+                    Toast.makeText(getApplicationContext(),R.string.number_null,Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -107,6 +107,7 @@ public class AddCallLog extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
+            finish();
             return true;
         }
         return super.onKeyDown(keyCode, event);
