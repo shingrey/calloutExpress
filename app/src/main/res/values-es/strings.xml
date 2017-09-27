@@ -17,4 +17,5 @@
     <string name="about">Bloqueo de llamadas express: \n  fue realizada al tener la necesidad de bloquear de forma rápida y fácil números de seguros de bancos que querian vender algo, sigueme en mi blog, encontraran temas sobre programación  😉</string>
     <string name="action_settings">Acerca de</string>
     <string name="notaccess">Agregar permisos a la app</string>
+    <string name="web">http://unprogramador.com</string>
 </resources>
