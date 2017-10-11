@@ -17,4 +17,11 @@
     <string name="about">Blocking express calls \n was made by having the need to quickly and easily block bank insurance numbers that wanted to sell something, follow my blog, you ll find programmin topics 😉</string>
     <string name="web">http://unprogramador.com</string>
     <string name="notaccess">Add permissions to the app</string>
+    <string name="shortBlock">Block</string>
+    <string name="shortLongBlock">Number Blocker</string>
+    <string name="shortDisable">Blocks</string>
+    <string name="shortInfo">Info</string>
+    <string name="shortLongInfo">Infromation app</string>
+    <string name="shortDisableInfo">Infos</string>
+    <string name="ShortLongBlock">Number blocker</string>
 </resources>

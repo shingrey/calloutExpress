@@ -18,4 +18,11 @@
     <string name="action_settings">Acerca de</string>
     <string name="notaccess">Agregar permisos a la app</string>
     <string name="web">http://unprogramador.com</string>
+    <string name="shortBlock">Bloquear</string>
+    <string name="ShortLongBlock">Bloqueador de número</string>
+    <string name="shortDisable">bloquear</string>
+    <string name="shortDisableInfo">info</string>
+    <string name="shortInfo">info</string>
+    <string name="shortLongBlock">Bloqueador de número</string>
+    <string name="shortLongInfo">Información de app</string>
 </resources>
