@@ -37,12 +37,13 @@ public class MainActivity extends AppCompatActivity {
     int permissionCheckCall;
     private static final int PERMISSION_ACCESS_CALL_PHONE = 1;
     private static final int REQUEST_SELECT_CONTACT = 1;
-    Querys q = new Querys();
-    SqliteHelper sqlh;
-    ArrayList<ArrayList<String>> listBlock;
-    ListView ListA;
-    ArrayList<BlockNumberData> arrayList;
-    BlockNumberData BlockData;
+    private Querys q = new Querys();
+    private SqliteHelper sqlh;
+    private ArrayList<ArrayList<String>> listBlock;
+    private ListView ListA;
+    private ArrayList<BlockNumberData> arrayList;
+    private BlockNumberData BlockData;
+    AlertDialog ad;
 
     @Override
     //Actividad que regresa contact aqui podemos ver el contacto
@@ -59,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
             int nameColumn = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
             String number = cursor.getString(numberColumn);
             String name = cursor.getString(nameColumn);
-            Log.d("miraloooo: ", number);
             number = number.replace("(", "");
             number = number.replace(")", "");
             number = number.replace("-", "");
@@ -67,15 +67,50 @@ public class MainActivity extends AppCompatActivity {
             sqlh = new SqliteHelper(getApplicationContext());
             boolean insert = q.insert(sqlh, name, number);
             if (insert) {
-                Intent refresh = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(refresh);
-                finish();
+                ad.dismiss();
             } else {
                 Toast.makeText(getApplicationContext(), "fail", Toast.LENGTH_LONG);
             }
 
 
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        permissionOn();
+        iList();
+
+    }
+    private void iList(){
+        //inyectamos en el list
+        sqlh = new SqliteHelper(getApplicationContext());
+        listBlock = q.selectnumberblock(sqlh);
+        arrayList = new ArrayList<BlockNumberData>();
+        ListA = (ListView) findViewById(R.id.listBlockMain);
+        ListA.setAdapter(null);
+        if(listBlock.size() > 0){
+            arrayList.clear();
+            for(int a = 0; a < listBlock.size(); a++){
+                BlockData = new BlockNumberData(Long.parseLong(listBlock.get(a).get(0)),listBlock.get(a).get(1),listBlock.get(a).get(2));
+                arrayList.add(BlockData);
+            }
+            BlockNumberAdapter adapter = new BlockNumberAdapter(this,arrayList);
+            ListA.setAdapter(null);
+            ListA.setAdapter(adapter);
+        }
+        ListA.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent vv = new Intent(getApplication(),AddCallLog.class);
+                vv.putExtra("name",listBlock.get(position).get(1));
+                vv.putExtra("phone",listBlock.get(position).get(2));
+                vv.putExtra("edit","true");
+                startActivity(vv);
+                finish();
+            }
+        });
     }
 
     @Override
@@ -104,7 +139,8 @@ public class MainActivity extends AppCompatActivity {
                     Button calllog = (Button) viewf.findViewById(R.id.log);
                     Button insertphone = (Button) viewf.findViewById(R.id.insert);
                     option.setView(viewf);
-                    option.create().show();
+                    ad = option.create();
+                    ad.show();
                     contact.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -131,6 +167,11 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        permissionOn();
+        iList();
+
+    }
+    private void permissionOn(){
         permissionCheckCall = ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE);
 
 
@@ -141,34 +182,6 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE, Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CALL_LOG, Manifest.permission.READ_CALL_LOG}, PERMISSION_ACCESS_CALL_PHONE);
 
         }
-        //inyectamos en el list
-        sqlh = new SqliteHelper(getApplicationContext());
-        listBlock = q.selectnumberblock(sqlh);
-        arrayList = new ArrayList<BlockNumberData>();
-        ListA = (ListView) findViewById(R.id.listBlockMain);
-        ListA.setAdapter(null);
-        if(listBlock.size() > 0){
-            arrayList.clear();
-            for(int a = 0; a < listBlock.size(); a++){
-                BlockData = new BlockNumberData(Long.parseLong(listBlock.get(a).get(0)),listBlock.get(a).get(1),listBlock.get(a).get(2));
-                arrayList.add(BlockData);
-            }
-            BlockNumberAdapter adapter = new BlockNumberAdapter(this,arrayList);
-            ListA.setAdapter(null);
-            ListA.setAdapter(adapter);
-        }
-        ListA.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent vv = new Intent(getApplication(),AddCallLog.class);
-                vv.putExtra("name",listBlock.get(position).get(1));
-                vv.putExtra("phone",listBlock.get(position).get(2));
-                vv.putExtra("edit","true");
-                startActivity(vv);
-                finish();
-            }
-        });
-
     }
 
     private void contact() {
